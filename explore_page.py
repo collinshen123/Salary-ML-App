@@ -37,7 +37,7 @@ def clean_education(x):
 
     
 
-@st.cache_resource
+
 def load_data():
     df = pd.read_parquet("survey_results_public.parquet")
     df = df[["Country", "EdLevel", "YearsCodePro", "Employment", "ConvertedCompYearly"]]
