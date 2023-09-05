@@ -3,13 +3,12 @@ import pandas as pd
 import matplotlib.pyplot as plt 
 
 def shortened_categories(catagories, cutoff):
-    catagorical_map = {}
-    for i in range (len(catagories)):
-        if catagories.values[i] >= cutoff:
-            catagorical_map[catagories.index[i]] = catagories.index[i]
-        else:
-            catagorical_map[catagories.index[i]] = 'Other'
-    return catagorical_map
+    return {
+        catagories.index[i]: catagories.index[i]
+        if catagories.values[i] >= cutoff
+        else 'Other'
+        for i in range(len(catagories))
+    }
 
 
 
@@ -61,6 +60,7 @@ def load_data():
 df = load_data()
 
 def show_explore_page():
+    # sourcery skip: extract-duplicate-method, inline-immediately-returned-variable
     st.title("Explore Software Engineer Salaries")
 
     st.write(
